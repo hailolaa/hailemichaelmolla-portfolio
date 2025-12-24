@@ -6,18 +6,84 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/hooks/use-toast';
 
 const Contact = () => {
+  const emailAddress = 'hailolaa21@gmail.com';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const openWebmailCompose = (subject?: string, body?: string) => {
+    const base = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailAddress)}`;
+    const gmailLink = `${base}${subject ? `&su=${subject}` : ''}${body ? `&body=${body}` : ''}`;
+    const win = window.open(gmailLink, '_blank', 'noopener,noreferrer');
+    if (!win) {
+      toast({
+        title: "Pop-up blocked",
+        description: "Allow pop-ups or use the copy email button.",
+      });
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "Thanks for reaching out. I'll get back to you soon!",
-    });
+
+    const subject = encodeURIComponent(`New message from ${formData.name || 'someone'}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+    const mailtoLink = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
+
+    const fallbackMailto = () => {
+      // Try to open mailto in a new tab/window (if the browser allows it)
+      const win = window.open(mailtoLink, '_blank', 'noopener,noreferrer');
+
+      if (!win) {
+        // If blocked, try Gmail web compose as a secondary new-tab option
+        openWebmailCompose(subject, body);
+        // Also fall back to same-tab mailto navigation to honor OS defaults
+        window.location.href = mailtoLink;
+      }
+
+      toast({
+        title: "Email compose opened",
+        description: "If it didn't open, allow pop-ups or set a default mail app.",
+      });
+    };
+
+    const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT;
+    if (endpoint) {
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) throw new Error('Failed to send');
+
+        toast({
+          title: "Message sent!",
+          description: "Thanks for reaching out. I'll get back to you soon!",
+        });
+        setFormData({ name: '', email: '', message: '' });
+        return;
+      } catch (error) {
+        console.error('Contact form send failed, falling back to mailto:', error);
+        toast({
+          title: "Sending via email app",
+          description: "Direct send failed. We'll open your mail app instead.",
+        });
+        fallbackMailto();
+        setFormData({ name: '', email: '', message: '' });
+        return;
+      }
+    }
+
+    fallbackMailto();
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -31,9 +97,9 @@ const Contact = () => {
   return (
     <section id="contact" className="py-24 relative">
       {/* Background Elements */}
-      <div className="absolute inset-0 grid-bg opacity-20" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" aria-hidden />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" aria-hidden />
+      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none" aria-hidden />
 
       <div className="container px-6 relative z-10">
         <div className="max-w-6xl mx-auto">

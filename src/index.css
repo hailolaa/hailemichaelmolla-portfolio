@@ -134,6 +134,7 @@
     content: '';
     @apply absolute inset-0 opacity-0 transition-opacity duration-300;
     background: linear-gradient(135deg, hsl(var(--primary) / 0.1), transparent);
+    pointer-events: none;
   }
 
   .terminal-card:hover::before {

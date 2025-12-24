@@ -6,7 +6,7 @@ const projects = [
     title: 'Get Social',
     description: 'A social media platform built during my CodeAlpha internship. Simple, organized, and user-friendly.',
     tags: ['React', 'Node.js', 'Express'],
-    github: 'https://github.com/hailolaa',
+    github: 'https://github.com/hailolaa/CodeAlpha_Social-Media-Platform.git',
     featured: true,
     gradient: 'from-cyan-500 to-blue-500',
   },
@@ -14,7 +14,7 @@ const projects = [
     title: 'E-Commerce Website',
     description: 'Full-stack e-commerce application developed during CodeAlpha internship with complete frontend and backend.',
     tags: ['JavaScript', 'Node.js', 'Express'],
-    github: 'https://github.com/hailolaa',
+    github: 'https://github.com/hailolaa/CodeAlpha_Simple-E-commerce-Store.git',
     featured: true,
     gradient: 'from-purple-500 to-pink-500',
   },
@@ -22,7 +22,7 @@ const projects = [
     title: 'Elderly-Care App',
     description: 'A Flutter mobile application designed to assist and care for elderly users.',
     tags: ['Flutter', 'Dart', 'Mobile'],
-    github: 'https://github.com/hailolaa',
+    github: 'https://github.com/hailolaa/Elderly-Care-Management-System-ECMS-.git',
     featured: true,
     gradient: 'from-green-500 to-teal-500',
   },
@@ -30,7 +30,7 @@ const projects = [
     title: 'Campus Lost & Found',
     description: 'A web platform for university students to report and find lost items on campus. Team project for web development course.',
     tags: ['React', 'Node.js', 'Team Project'],
-    github: 'https://github.com/hailolaa',
+    github: 'https://github.com/hailolaa/Campus_Lost_and_Found_Management_System_2024_25.git',
     featured: false,
     gradient: 'from-orange-500 to-red-500',
   },
@@ -38,7 +38,7 @@ const projects = [
     title: 'Kotari-Tracker',
     description: 'A water intake tracking web application to help users maintain healthy hydration habits.',
     tags: ['JavaScript', 'Web App'],
-    github: 'https://github.com/hailolaa',
+    github: '',
     featured: false,
     gradient: 'from-blue-500 to-cyan-500',
   },
@@ -46,7 +46,7 @@ const projects = [
     title: 'School Management System',
     description: 'A comprehensive school management system built voluntarily for my high school with my team.',
     tags: ['Full Stack', 'Team Project'],
-    github: 'https://github.com/hailolaa',
+    github: '',
     featured: false,
     gradient: 'from-pink-500 to-purple-500',
   },
@@ -127,7 +127,7 @@ const Projects = () => {
 
           {/* View All Button */}
           <div className="text-center mt-12">
-            <Button 
+            <Button onClick={() => window.open('https://github.com/hailolaa', '_blank')}
               variant="outline" 
               size="lg"
               className="border-border hover:border-primary hover:bg-primary/10"
