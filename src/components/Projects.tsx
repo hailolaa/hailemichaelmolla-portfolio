@@ -3,6 +3,14 @@ import { Button } from '@/components/ui/button';
 
 const projects = [
   {
+    title: 'Habitual',
+    description: 'Track your daily habits, set goals, journal your progress, and earn achievements. Build better habits with HabitFlow's intuitive habit tracking system.',
+    tags: ['React'. 'Node.js'],
+    github: 'https://github.com/hailolaa/Habit-Flow.git',
+    featured: true,
+    gradient: 'from-yellow-500 to-orange-500',
+  },
+  {
     title: 'Get Social',
     description: 'A social media platform built during my CodeAlpha internship. Simple, organized, and user-friendly.',
     tags: ['React', 'Node.js', 'Express'],
@@ -50,6 +58,9 @@ const projects = [
     featured: false,
     gradient: 'from-pink-500 to-purple-500',
   },
+
+
+
 ];
 
 const Projects = () => {
