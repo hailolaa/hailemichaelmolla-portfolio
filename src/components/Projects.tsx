@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 const projects = [
   {
     title: 'Habitual',
-    description: 'Track your daily habits, set goals, journal your progress, and earn achievements. Build better habits with HabitFlow's intuitive habit tracking system.',
+    description: "Track your daily habits, set goals, journal your progress, and earn achievements. Build better habits with HabitFlow's intuitive habit tracking system.",
     tags: ['React'. 'Node.js'],
     github: 'https://github.com/hailolaa/Habit-Flow.git',
     featured: true,
