@@ -5,7 +5,7 @@ const projects = [
   {
     title: 'Habitual',
     description: "Track your daily habits, set goals, journal your progress, and earn achievements. Build better habits with HabitFlow's intuitive habit tracking system.",
-    tags: ['React', 'Node.js'],
+    tags: ['React', 'Next.js', 'typescript', 'tailwindcss'],
     github: 'https://github.com/hailolaa/Habit-Flow.git',
     demo: 'https://habitune.vercel.app',
     featured: true,
